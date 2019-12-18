@@ -35,21 +35,23 @@ delivery dates times can be related to City Domain.
 </table>
 
 To manage the changes and updates in delivery dates and times, so they can be reflected to
-customers on site and mobile app, when chosen order details in the checkout, we need to
+customers on site and mobile app, when chosen order details in the checkout, we need to 
 create some endpoints, and integrate them into Project A website and admin interfaces.
 
--times
-3) Attach city delivery times
-Post /api/city/{city_id}/delivery-times 2 points
-here you can add the JSON request params
-4) Exclude some city delivery times span from some delivery dates 3 points
-5) Exclude a city delivery date by excluding all of the daily delivery times 3 points
+3) Attach city delivery times <br />
+Post /api/city/{city_id}/delivery-times 2 points <br />
+here you can add the JSON request params <br />
+4) Exclude some city delivery times span from some delivery dates 3 points <br />
+5) Exclude a city delivery date by excluding all of the daily delivery times 3 points <br />
+
 Website
-In the checkout process
+--------
+
+In the checkout process <br />
 6) By sending the city id return all of its delivery dates times in this format (of coarse
-excluded delivery dates, times shouldn't be returned)
-Post api/city/{city_id}/delivery-dates-times/{number_of_days_to_get} 8 points
-Response should be formatted in JSON format as follow (city_id=1 (Rabat)
+excluded delivery dates, times shouldn't be returned) <br />
+Post api/city/{city_id}/delivery-dates-times/{number_of_days_to_get} 8 points <br />
+Response should be formatted in JSON format as follow (city_id=1 (Rabat) 
 number_of_days_to_get=2 ), the partner will only operates during the 06-11 (Almassira Aid)
 from 14->18.
 
