@@ -1,78 +1,74 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## Project : Delivery date/times Problem
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Project A 
+---------
+is an e-commerce platform that helps people to send gifts to their beloved ones
+using a web/mobile applications solutions.
+projectA.com : the website
+admin.projectA.com : the administration panel of Project A
+Project A operation team started delivery in 3 cities: Casa, Rabat and Tangier. in each city
+we have a partner who is the supplier and the distributor of the gift products
+Rabat: Mohamed (flowers, chocolate)
+Casa: Hassan (flowers, perfumes, chocolate)
+Tangier: Nada (flowers)
+Each supplier has certain delivery dates/times during the year in which he can operate to
+deliver gift orders to their receivers. We suppose that each city contains one partner, so that
+delivery dates times can be related to City Domain.
 
-## About Laravel
+<table>
+    <tr>
+        <td>Partner</td>
+        <td>Delivery times working hours span</td>
+    </tr>
+    <tr>
+        <td>Mohamed</td>
+        <td>“9->12”, “14->18”</td>
+    </tr>
+    <tr>
+        <td>Hassan</td>
+        <td>“10->13”, “15->19”</td>
+    </tr>
+    <tr>
+        <td>Nada</td>
+        <td>“9->13”, “14->18”, “18-20”</td>
+    </tr>
+</table>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+To manage the changes and updates in delivery dates and times, so they can be reflected to
+customers on site and mobile app, when chosen order details in the checkout, we need to
+create some endpoints, and integrate them into Project A website and admin interfaces.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-times
+3) Attach city delivery times
+Post /api/city/{city_id}/delivery-times 2 points
+here you can add the JSON request params
+4) Exclude some city delivery times span from some delivery dates 3 points
+5) Exclude a city delivery date by excluding all of the daily delivery times 3 points
+Website
+In the checkout process
+6) By sending the city id return all of its delivery dates times in this format (of coarse
+excluded delivery dates, times shouldn't be returned)
+Post api/city/{city_id}/delivery-dates-times/{number_of_days_to_get} 8 points
+Response should be formatted in JSON format as follow (city_id=1 (Rabat)
+number_of_days_to_get=2 ), the partner will only operates during the 06-11 (Almassira Aid)
+from 14->18.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## How to use the project
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<ol>
+<li>
+git clone https://github.com/dinabh/delivery-api.git
+</li>
+<li>
+Create a database for example a Mysql database or sqlite etc ...
+</li>
+<li>
+composer install
+</li>
+<li>
+php artisan migrate
+</li>
+<li>
+php artisan db:seed
+</li>
+</ol>
