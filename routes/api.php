@@ -18,3 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('city', 'CityController');
+
+Route::apiResource('delivery-times', 'DeliveryTimeController');
+
+//Route::apiResource('city/{city}/delivery-dates-times', 'DeliveryDatesController');
+
+Route::post('city/{city}/delivery-times/{deliveryTimes}', 'DeliveryDatesController@attacheCityToDeliveryTime');
+Route::get('city/{city}/delivery-dates-times/{numberOfDays}', 'DeliveryDatesController@getTheNumberOfDays');
